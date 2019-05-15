@@ -17,8 +17,8 @@
     </div>
 
     <div class="RKarl">
-        <h3>Get's 1 Counter is at: {{Get1Counter}}</h3>
-        <h3>Get's 2 Counter is at: {{Get2Counter}}</h3>
+        <h3>Get's 1 Counter is at: {{Counter1}}</h3>
+        <h3>Get's 2 Counter is at: {{Counter2}}</h3>
          
     </div>
         
@@ -36,8 +36,8 @@ export default {
           AustinCounter: null,
           ZachCounter: null,
           KarlCounter: null,
-          Get1Counter: null,
-          Get2Counter: null
+          Counter1: null,
+          Counter2: null
       }; 
   },
 
@@ -45,14 +45,14 @@ export default {
       Get1Counter: function(){
           axios.get("/.netlify/server/functions/GetCount")
           .then(response => {
-              this.Get1Counter = response;
+              this.Counter1 = response;
           })
       },
 
       Get2Counter: function(){
           axios.get("/.netlify/functions/GetCount")
           .then(response => {
-              this.Get2Counter = response;
+              this.Counter2 = response;
           })
       },
 
@@ -117,7 +117,7 @@ export default {
 
   mounted() {
     //   Axios.get to set equal to counters .....
-        this.AustinGetCount(); this.ZachGetCount(); this.KarlGetCount();
+        this.AustinGetCount(); this.ZachGetCount(); this.KarlGetCount(); this.Get1Counter(); this.Get2Counter();
   },
 };
 </script>
