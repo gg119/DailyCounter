@@ -45,14 +45,16 @@ export default {
       Get1Counter: function(){
           axios.get("/.netlify/server/functions/GetCount")
           .then(response => {
-              this.Counter1 = response;
+              this.Counter1 = response.body;
+              console.log("Success")
           })
       },
 
       Get2Counter: function(){
           axios.get("/.netlify/functions/GetCount")
           .then(response => {
-              this.Counter2 = response;
+              this.Counter2 = response.body;
+              console.log("Success 2")
           })
       },
 
