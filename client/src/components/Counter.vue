@@ -54,7 +54,9 @@ export default {
           axios.get("/.netlify/functions/GetCount")
           .then(response => {
               this.Counter2 = response.body;
-              
+          })
+          .catch(err => {
+              this.Counter2 = err;
           })
       },
 
