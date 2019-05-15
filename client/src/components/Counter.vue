@@ -15,6 +15,12 @@
         <h3>Karl's R Counter is at: {{KarlCounter}}</h3>
          <form><button type="button" v-on:click="KarlIncreaseCounter">Increase Karl's Counter</button> </form>
     </div>
+
+    <div class="RKarl">
+        <h3>Get's 1 Counter is at: {{Get1Counter}}</h3>
+        <h3>Get's 2 Counter is at: {{Get2Counter}}</h3>
+         
+    </div>
         
   </div>
 </template>
@@ -30,10 +36,26 @@ export default {
           AustinCounter: null,
           ZachCounter: null,
           KarlCounter: null,
+          Get1Counter: null,
+          Get2Counter: null
       }; 
   },
 
   methods: {
+      Get1Counter: function(){
+          axios.get("/.netlify/server/functions/GetCount")
+          .then(response => {
+              this.Get1Counter = response;
+          })
+      },
+
+      Get2Counter: function(){
+          axios.get("/.netlify/functions/GetCount")
+          .then(response => {
+              this.Get2Counter = response;
+          })
+      },
+
       AustinIncreaseCounter: function() {
           this.AustinCounter += 1;
           axios.post("/postAustin/AustinC", {
