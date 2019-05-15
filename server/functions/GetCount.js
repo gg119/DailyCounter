@@ -1,5 +1,5 @@
 
-const database = require('./database');
+const database = require('../database');
 
 exports.handler = (event, context, callback) => {
     database.GetByName(event.headers.name).then((result) => {
