@@ -1,9 +1,7 @@
 exports.handler = (event, context, callback) => {
     callback(null, {
         statusCode: 200,
-        body: "20",
-    })
-        
-    
-    
+        body: JSON.stringify(20),
+    }) 
+
 }
