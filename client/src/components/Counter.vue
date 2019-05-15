@@ -17,7 +17,6 @@
     </div>
 
     <div class="RKarl">
-        <h3>Get's 1 Counter is at: {{Counter1}}</h3>
         <h3>Get's 2 Counter is at: {{Counter2}}</h3>
          
     </div>
@@ -36,81 +35,66 @@ export default {
           AustinCounter: null,
           ZachCounter: null,
           KarlCounter: null,
-          Counter1: null,
           Counter2: null
       }; 
   },
 
   methods: {
-      Get1Counter: function(){
-          axios.get("/.netlify/server/functions/GetCount")
-          .then(response => {
-              this.Counter1 = response.body;
-              
-          })
-      },
+      
 
       Get2Counter: function(){
           axios.get("/.netlify/functions/GetCount")
           .then(response => {
               this.Counter2 = response.data;
           })
-          .catch(err => {
-              this.Counter2 = err;
-          })
       },
 
       AustinIncreaseCounter: function() {
           this.AustinCounter += 1;
-          axios.post("/postAustin/AustinC", {
-              AustinC: this.AustinCounter
-          }, {
-              headers: {
-                  counterValue: this.AustinCounter
-              }
-          })
+          const headers = {counterValue: this.AustinCounter}
+
+          axios.post("/postAustin/AustinC", {AustinC: this.AustinCounter}, {headers: headers})
       },
 
       ZachIncreaseCounter: function(){
           this.ZachCounter += 1;
-          axios.post("/postZach/ZachC", {
-              ZachC: this.ZachCounter
-          }, {
-              headers: {
-                  counterValue: this.ZachCounter
-              }
-          })
+          const headers = {counterValue: this.ZachCounter}
+          axios.post("/postZach/ZachC", {ZachC: this.ZachCounter}, {headers: headers})
       },
 
       KarlIncreaseCounter: function(){
           this.KarlCounter += 1;
-          axios.post("/postKarl/KarlC", {
-              KarlC: this.KarlCounter
-          }, {
-              headers: {
-                  counterValue: this.KarlCounter
-              }
-          })
+          const headers = {counterValue: this.KarlCounter}
+          axios.post("/postKarl/KarlC", {KarlC: this.KarlCounter}, {headers: headers})
       },
 
       AustinGetCount: function(){
-          axios.get("/getAustin/AustinC")
-            .then(result => {
-                this.AustinCounter = result.data;
+          const headers = {
+              name: "AustinC"
+          }
+          axios.get("/.netlify/functions/GetCount", {headers: headers})
+            .then(response => {
+                this.AustinCounter = response.data;
             })
       },
 
       ZachGetCount: function(){
-          axios.get("/getZach/ZachC")
-            .then(result => {
-                this.ZachCounter = result.data;
+          const headers = {
+              name: "ZachC"
+          }
+          axios.get("/.netlify/functions/GetCount", {headers: headers})
+            .then(response => {
+                this.ZachCounter = response.data;
             })
       },
 
       KarlGetCount: function(){
-          axios.get("/getKarl/KarlC")
-            .then(result => {
-                this.KarlCounter = result.data;
+          const headers = {
+              name: "KarlC"
+          }
+          axios.get("/.netlify/functions/GetCount", {headers: headers})
+            .then(response => {
+                this.KarlCounter = response.data;
             })
       },
 
