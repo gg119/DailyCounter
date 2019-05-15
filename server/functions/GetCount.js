@@ -1,7 +1,9 @@
-exports.handler = async (event, context) => {
-    const response = {
+exports.handler = (event, context, callback) => {
+    callback(null, {
         statusCode: 200,
         body: "20",
-    }
-    return JSON.stringify(response);
+    })
+        
+    
+    
 }
