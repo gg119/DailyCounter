@@ -7,19 +7,16 @@ const dbName = "dailycounter"
 
 
 const findDocuments = function (db, name, callback) {
-    // Get the documents collection
-    
     const collection = db.collection('Counter');
     // Find some documents
     collection.find({}).toArray(function (err, docs) {
         assert.equal(err, null);
-        callback(docs[0].counters[name]);
+        callback(docs[0].counters);
     });
 }
 
 exports.handler = (event, context, callback) => {
     MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-        assert.equal(null, err);
         const db = client.db(dbName);
 
         findDocuments(db, event.headers.name, (docs) => {
@@ -28,6 +25,7 @@ exports.handler = (event, context, callback) => {
                 body: JSON.stringify(docs),
             })
         })
+        client.close();
     });
 
     // app.get(["/getAustin/:name", "/getZach/:name", "/getKarl/:name"], (req, res) => {
