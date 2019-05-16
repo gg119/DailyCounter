@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
     AustinCounter: String
 })
 
-const Counter = mongoose.model('Counter')
+const Counter = mongoose.model('Counter', schema)
 exports.handler = (event, context, callback) => {
     Counter.findOne({AustinC}, (err, res) => {
         callback(null, {
@@ -21,12 +21,18 @@ exports.handler = (event, context, callback) => {
             body: JSON.stringify(res),
         })
     })
-    // database.GetByName(event.headers.name).then((result) => {
-    //     callback(null, {
-    //         statusCode: 200,
-    //         body: JSON.stringify(result),
+    // app.get(["/getAustin/:name", "/getZach/:name", "/getKarl/:name"], (req, res) => {
+    //     database.GetByName(req.params.name).then((result) => {
+    //         res.end(result)
     //     })
+        
     // })
-
-
+    
+    // app.post(["/postAustin/:name", "/postZach/:name", "/postKarl/:name"], (req) => {
+    //     var name = req.params.name
+    //     var value = req.headers.countervalue
+    
+    //     database.UpdateValueByName(name, value).then((result) => {
+    //         return result;
+    //     })
 }
