@@ -40,14 +40,6 @@ export default {
   },
 
   methods: {
-      
-
-      Get2Counter: function(){
-          axios.get("/.netlify/functions/GetCount")
-          .then(response => {
-              this.Counter2 = response.data;
-          })
-      },
 
       AustinIncreaseCounter: function() {
           this.AustinCounter += 1;
@@ -97,10 +89,7 @@ export default {
                 this.KarlCounter = response.data;
             })
       },
-
-
-
-
+      
   },
 
   mounted() {

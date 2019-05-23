@@ -11,7 +11,7 @@ const findDocuments = function (db, name, callback) {
     // Find some documents
     collection.find({}).toArray(function (err, docs) {
         assert.equal(err, null);
-        callback(docs[0].counters);
+        callback(docs[0].counters[name]);
     });
 }
 
