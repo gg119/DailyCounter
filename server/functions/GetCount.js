@@ -6,14 +6,15 @@ const url = "mongodb://root:root123@ds157516.mlab.com:57516/dailycounter";
 const dbName = "dailycounter"
 
 
-const findDocuments = function (db, name, callback) {
+const findDocuments = async function (db, name ,callback) {
+    // Get the documents collection
     const collection = db.collection('Counter');
     // Find some documents
-    collection.find({}).toArray(function (err, docs) {
-        assert.equal(err, null);
-        callback(docs[0].counters[name]);
-    });
+    const query = await collection.find({}).toArray()
+    // .project({"counters.AustinCounter": 1, _id: 0}).toArray()
+    callback(query[0].counters[name])
 }
+
 
 exports.handler = (event, context, callback) => {
     MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
