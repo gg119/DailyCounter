@@ -62,7 +62,7 @@ export default {
 
       AustinGetCount: function(){
           const headers = {
-              name: "AustinC"
+              name: "AustinCounter"
           }
           axios.get("/.netlify/functions/GetCount", {headers: headers})
             .then(response => {
@@ -72,7 +72,7 @@ export default {
 
       ZachGetCount: function(){
           const headers = {
-              name: "ZachC"
+              name: "ZachCounter"
           }
           axios.get("/.netlify/functions/GetCount", {headers: headers})
             .then(response => {
@@ -82,7 +82,7 @@ export default {
 
       KarlGetCount: function(){
           const headers = {
-              name: "KarlC"
+              name: "KarlCounter"
           }
           axios.get("/.netlify/functions/GetCount", {headers: headers})
             .then(response => {
